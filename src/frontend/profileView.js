@@ -8,7 +8,7 @@ export class ProfileView {
         this.#events = Events.events();
     }
 
-    async renderProfile() {
+    async render() {
         const profileDiv = document.createElement('div');
         profileDiv.id = 'profile';
         profileDiv.className = 'section active';
@@ -24,16 +24,23 @@ export class ProfileView {
         profileInfoDiv.className = 'profile-info';
 
         const fields = [
-            { id: 'username', label: 'Username:', type: 'text', readonly: true },
+            { id: 'id', label: 'ID:', type: 'text', readonly: true },
             { id: 'name', label: 'Name:', type: 'text', readonly: true },
             { id: 'email', label: 'Email:', type: 'email', readonly: true },
             { id: 'phone', label: 'Phone:', type: 'tel', readonly: true },
             { id: 'dob', label: 'Date of Birth:', type: 'date', readonly: true },
-            { id: 'address', label: 'Address:', type: 'text', readonly: true },
             { id: 'password', label: 'Password:', type: 'password', readonly: true }
         ];
 
-        const profileData = await this.#loadProfileData();
+        let profileData = await this.#loadProfileData();
+        if(Array.isArray(profileData)){
+            if(profileData.length === 0){
+                profileData = {};
+            }
+            else{
+                profileData = profileData[0];
+            }
+        }
         fields.forEach(field => {
             const label = document.createElement('label');
             label.htmlFor = field.id;

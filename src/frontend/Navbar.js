@@ -19,9 +19,8 @@ export class NavBar {
       <li><a href="#events">Upcoming Events</a></li>
       <li><a href="#results">Previous Results</a></li>
       <li><a href="#members">Members</a></li>
-      <li><a href="#logout">Logout</a></li>
     </ul>
-  `;
+  `;//<li><a href="#logout">Logout</a></li>
 
     // Get all the anchor tags within the <div> element
     const links = elm.querySelectorAll('a');

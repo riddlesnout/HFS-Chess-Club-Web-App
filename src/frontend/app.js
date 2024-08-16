@@ -1,8 +1,10 @@
 import { Events } from './Events.js';
 import { NavBar } from './Navbar.js';
 import { ProfileView } from './profileView.js';
+import { EventsView } from './eventsView.js';
+import { MembersView } from './membersView.js';
 
-class App {
+export class App {
   #mainViewElm = null;
   #events = null;
   #tempView = null;
@@ -35,46 +37,25 @@ class App {
     this.#mainViewElm.innerHTML = '';
     if (view === 'profile') {
       const profView = new ProfileView();
-      this.#mainViewElm.appendChild(await profView.renderProfile());      
+      this.#mainViewElm.appendChild(await profView.render());      
       window.location.hash = view;
 
     } else if (view === 'events') {
-      const archive = document.createElement('div');
-      archive.innerHTML = '<h1>Events View</h1>';
-      this.#mainViewElm.appendChild(archive);
+      const eventsView = new EventsView();
+      this.#mainViewElm.appendChild(await eventsView.render());
       window.location.hash = view;
-    } else {
+    }else if (view === 'members') {
+      const membersView = new MembersView();
+      this.#mainViewElm.appendChild(await membersView.render());
+      window.location.hash = view;
+    }else if (view === 'results') {
+      const resultsView = document.createElement('h1');
+      resultsView.innerHTML = 'To be implemented';
+      this.#mainViewElm.appendChild(resultsView);
+      window.location.hash = view;
+    }else {
       window.location.hash = 'profile';
     }
   }  
 }
-
-const resetState = () => {
-  localStorage.clear();
-  const app = new App();
-  app.render('root');
-};
-
-async function preloadBackgroundImage() {
-  return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = 'https://media.gettyimages.com/id/171249150/photo/chess.jpg?s=612x612&w=0&k=20&c=VIJuXyYmabrrzBItMMIa70GMn778qIKjL_FK3uDK7tE='; // Use the direct URL to the image file
-      img.onload = () => resolve();
-      img.onerror = () => reject(new Error('Background image failed to load.'));
-  });
-}
-
-
-// Mount the application to the root element.
-try {
-  await preloadBackgroundImage(); // Wait until the background image is loaded
-} catch (error) {
-  console.error(error.message);
-}
-const app = new App();
-await app.render('root');
-
-
-document.getElementById('reset-state').addEventListener('click', resetState);
-
 
