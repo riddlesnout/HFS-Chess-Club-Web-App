@@ -23,9 +23,13 @@
   },
   "contributors": [],
   "scripts": {
-    "start": "http-server src/frontend -p 3000 -c-1 -o -s"
+    "start": "node src/backend/server.js"
   },
-  "devDependencies": {
-    "http-server": "^14.1.1"
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "archiver": "^6.0.1",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "pouchdb": "^8.0.1"
   }
 }
