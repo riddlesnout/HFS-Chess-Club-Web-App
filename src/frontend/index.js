@@ -7,7 +7,7 @@ async function preloadBackgroundImage() {
         img.onload = () => resolve();
         img.onerror = () => reject(new Error('Background image failed to load.'));
     });
-  }
+}
   
   
   try {
@@ -20,10 +20,10 @@ async function preloadBackgroundImage() {
   const app = new App();
   await app.render('root');
 
-  const resetState = () => {
-    localStorage.clear();
-    const app = new App();
-    app.render('root');
-  };  
+  // const resetState = () => {
+  //   localStorage.clear();
+  //   const app = new App();
+  //   app.render('root');
+  // };  
   
-  document.getElementById('reset-state').addEventListener('click', resetState);
+  // document.getElementById('reset-state').addEventListener('click', resetState);

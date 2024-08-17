@@ -1,5 +1,5 @@
 import { Events } from './Events.js';
-import { fetch } from './Server.js';
+const URL = "http://localhost:3260"; // URL of our server
 
 export class ProfileView {
     #events = null;
@@ -88,11 +88,13 @@ export class ProfileView {
     }
 
     async #loadProfileData() {
-        const response = await fetch('/profile');
-        if (response.status === 200 && response.body) {
-            return JSON.parse(response.body);
+        const response = await fetch(`${URL}/members`, {
+            method: 'GET'
+        });
+        if (response.ok) {
+            return response.json();
         }
-        return {};
+        return [];
     }
 
     async #handleProfileFormSubmit(event) {
@@ -106,13 +108,20 @@ export class ProfileView {
             profileData[input.id] = input.value;
         });
 
-        await fetch('/profile', {
+        const response = await fetch(`${URL}/members`, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(profileData),
         });
 
-        this.#toggleEdit(false);
-        alert('Profile updated successfully!');
+        if (response.ok) {
+            this.#toggleEdit(false);
+            alert('Profile updated successfully!');
+        } else {
+            alert('Failed to update profile.');
+        }
     }
 
     #toggleEdit(editable) {

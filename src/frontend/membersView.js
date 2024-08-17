@@ -1,4 +1,4 @@
-import { fetch } from './Server.js';
+const URL = "http://localhost:3260"; // URL of our server
 
 export class MembersView {
   #memberList = null;
@@ -69,19 +69,24 @@ export class MembersView {
   }
 
   async #getMembers() {
-    const response = await fetch('/profile');
-    if (response.status === 200) {
-      const data = await response.body;
-      return JSON.parse(data);
+    const response = await fetch(`${URL}/members`, {
+      method: 'GET'
+    });
+    if (response.ok) {
+      return response.json();
     }
     return [];
   }
 
   async #updateMember(member) {
-    await fetch('/profile', {
-      method: 'POST',
+    const response = await fetch(`${URL}/members`, {
+      method: 'PUT',
       body: JSON.stringify(member),
     });
+
+    if (!response.ok) {
+      alert('Failed to update member.');
+    }
   }
 
   async #handleEditMember(member, listItem) {
@@ -125,14 +130,18 @@ export class MembersView {
   async #handleDeleteMember(memberId, listItem) {
     const confirmation = confirm('Are you sure you want to delete this member?');
     if (confirmation) {
-      await fetch('/profile', {
+      const response = await fetch(`${URL}/members`, {
         method: 'DELETE',
-        body: memberId,
+        body: JSON.stringify({ id: memberId }),
       });
 
-      // Remove the member item from the list
-      listItem.remove();
-      alert('Member info successfully updated!');
+      if (response.ok) {
+        // Remove the member item from the list
+        listItem.remove();
+        alert('Member successfully deleted!');
+      } else {
+        alert('Failed to delete member.');
+      }
     }
   }
 }

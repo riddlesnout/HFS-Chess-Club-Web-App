@@ -1,177 +1,363 @@
+/* General styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 0;
+  background-image: url('https://media.gettyimages.com/id/171249150/photo/chess.jpg?s=612x612&w=0&k=20&c=VIJuXyYmabrrzBItMMIa70GMn778qIKjL_FK3uDK7tE='); /* Use a direct URL to the image file */
+  background-size: cover; /* Cover the entire viewport */
+  background-repeat: no-repeat; /* Do not repeat the background image */
+  background-attachment: fixed; /* Keep the background image fixed when scrolling */
+  background-position: center; /* Center the background image */
+}
 
-    background-image: url('https://media.gettyimages.com/id/171249150/photo/chess.jpg?s=612x612&w=0&k=20&c=VIJuXyYmabrrzBItMMIa70GMn778qIKjL_FK3uDK7tE='); /* Use a direct URL to the image file */
-    background-size: cover; /* Cover the entire viewport */
-    background-repeat: no-repeat; /* Do not repeat the background image */
-    background-attachment: fixed; /* Keep the background image fixed when scrolling */
-    background-position: center; /* Center the background image */
-  }
+.container {
+  text-align: center;
+  margin-top: 50px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
 
-  .container {
-    text-align: center;
-    margin-top: 50px;
-    margin-left: 25%;
-    margin-right: 25%;
-  }
-  
-  .input-container {
-    margin-bottom: 20px;
-  }
-  
-  input[type="text"] {
-    padding: 10px;
-    width: 60%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  /* button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-  } */
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: white;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .deleteButton {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Style the navbar container */
-  #navbar {
-    overflow: hidden;
-    background-color: #fcf8c7;
-    /* Change the background color as needed */
-    display: flex;
-    /* Use flexbox for center alignment and spacing */
-    justify-content: center;
-    /* Center the items horizontally */
-  }
-  
-  /* Navbar links */
-  #navbar a {
-    float: left;
-    /* Align links to the left side */
-    display: block;
-    /* Change the display to block, enabling padding and height adjustments */
-    color: rgb(230, 44, 44);
-    /* Change text color */
-    text-align: center;
-    /* Center-align text */
-    padding: 0px 0px;
-    /* Add some padding for spacing */
-    text-decoration: none;
-    /* Remove underlines from links */
-  }
-  
-  /* Unordered list (ul) styling */
-  #navbar ul {
-    list-style-type: none;
-    /* Remove bullets from the list */
-    margin: 0;
-    /* Remove margins */
-    padding: 0;
-    /* Remove padding */
-    overflow: hidden;
-    /* Clear floats */
-  }
-  
-  /* List item (li) styling */
-  #navbar ul li {
-    float: left;
-    margin-top: 10px;
-    margin-left: 20px;
-    /* Align list items side by side */
-  }
-  
-  /* Optional: Add a color change on hover */
-  #navbar ul li:hover {
-    background-color: #ddd;
-    /* Light grey background on hover */
-    color: black;
-    /* Change text color on hover */
-  }
+.input-container {
+  margin-bottom: 20px;
+}
 
-  #profile {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
+input[type="text"] {
+  padding: 10px;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Navbar styling */
+#navbar {
+  background-color: #fcf8c7; /* Light background color for the navbar */
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#navbar ul li {
+  margin: 0 15px;
+}
+
+#navbar a {
+  color: rgb(230, 44, 44);
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+  border-radius: 4px;
+}
+
+/* ProfileView styling */
+#profile {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
 }
 
 .profile-info label {
-    display: inline-block;
-    width: 30%; /* Adjust width as needed */
-    margin-bottom: 15px;
-    font-weight: bold;
-    vertical-align: middle;
+  display: inline-block;
+  width: 30%; /* Adjust width as needed */
+  margin-bottom: 15px;
+  font-weight: bold;
+  vertical-align: middle;
 }
 
 .profile-info input {
-    display: inline-block;
-    width: 65%; /* Adjust width as needed */
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    vertical-align: middle;
+  display: inline-block;
+  width: 65%; /* Adjust width as needed */
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  vertical-align: middle;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 #save-profile {
-    background-color: #28a745;
+  background-color: #28a745;
 }
 
 #save-profile:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 #show-password {
-    background-color: #ffc107;
+  background-color: #ffc107;
 }
 
 #show-password:hover {
-    background-color: #e0a800;
+  background-color: #e0a800;
+}
+
+/* Container for Events View */
+#events-view {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+#events-view h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Event List */
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.event-list li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.event-list li:hover {
+  transform: translateY(-3px);
+}
+
+/* Event Details */
+.event-list li .event-details {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.event-list li .event-details span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.event-list li .event-details strong {
+  color: #007bff;
+}
+
+/* Edit Button */
+.edit-button {
+  width: 50%;
+  background-color: #ffc107;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #e0a800;
+}
+
+/* Save Button */
+.save-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+/* delete Button */
+.delete-button {
+  width: 50%;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Add Event Form */
+.add-event-form {
+  margin-top: 20px;
+}
+
+.add-event-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.add-event-form input,
+.add-event-form select {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-event-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.add-event-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Container for Members View */
+#members-view {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+#members-view h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Members List */
+.members-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.members-list li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* Member Details */
+.members-list li .member-details {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.members-list li .member-details span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Edit Button */
+.edit-member-button {
+  background-color: #ffc107;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-member-button:hover {
+  background-color: #e0a800;
+}
+
+/* Save Button */
+.save-member-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-member-button:hover {
+  background-color: #218838;
+}
+
+/* Delete Button */
+.delete-member-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-member-button:hover {
+  background-color: #c82333;
 }

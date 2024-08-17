@@ -1,5 +1,5 @@
 import { Events } from './Events.js';
-import { fetch } from './Server.js';
+const URL = "http://localhost:3260"; // URL of our server
 
 export class EventsView {
   #events = null;
@@ -97,19 +97,24 @@ class EventList {
   }
 
   async #getEvents() {
-    const response = await fetch('/events');
-    if (response.status === 200) {
-      const data = await response.body;
-      return JSON.parse(data);
+    const response = await fetch(`${URL}/events`, {
+      method: 'GET'
+    });
+    if (response.ok) {
+      return response.json();
     }
     return [];
   }
 
   async #updateEvent(event) {
-    await fetch('/events', {
-      method: 'POST',
+    const response = await fetch(`${URL}/events`, {
+      method: 'PUT',
       body: JSON.stringify(event),
     });
+
+    if (!response.ok) {
+      alert('Failed to update event.');
+    }
   }
 
   async #handleEditEvent(event, listItem) {
@@ -152,14 +157,18 @@ class EventList {
   async #handleDeleteEvent(eventId, listItem) {
     const confirmation = confirm('Are you sure you want to delete this event?');
     if (confirmation) {
-      await fetch('/events', {
+      const response = await fetch(`${URL}/events`, {
         method: 'DELETE',
-        body: eventId,
+        body: JSON.stringify({ id: eventId }),
       });
 
-      // Remove the event item from the list
-      listItem.remove();
-      alert('Event successfully deleted!');
+      if (response.ok) {
+        // Remove the event item from the list
+        listItem.remove();
+        alert('Event successfully deleted!');
+      } else {
+        alert('Failed to delete event.');
+      }
     }
   }
 }
@@ -192,17 +201,21 @@ class AddEventForm {
         location: document.getElementById('event-location').value,
       };
 
-      await fetch('/events', {
+      const response = await fetch(`${URL}/events`, {
         method: 'POST',
         body: JSON.stringify(newEvent),
       });
 
-      form.reset();
+      if (response.ok) {
+        form.reset();
 
-      alert('Event successfully added!');
+        alert('Event successfully added!');
 
-      // Reload the page
-      this.#events.publish('navigateTo', 'events');
+        // Reload the page or refresh the event list
+        this.#events.publish('navigateTo', 'events');
+      } else {
+        alert('Failed to add event.');
+      }
     });
 
     return form;
